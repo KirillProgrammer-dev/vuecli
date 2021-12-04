@@ -1,4 +1,4 @@
-# test-vue
+# vue-weather
 
 ## Project setup
 ```
