@@ -14,6 +14,9 @@
 import humidity from "./components/humidity.vue";
 import temperature from "./components/temperature.vue";
 import wind from "./components/wind.vue";
+import axios from 'axios';
+
+let url = "http://api.openweathermap.org/data/2.5/weather?q=Moscow&lang=ru&units=metric&appid=658a409e6023c63e869f6b066d96bca4";
 
 export default {
   name: "body",
@@ -29,6 +32,14 @@ export default {
     humidity,
     temperature,
     wind
+  },
+  mounted(){
+     axios.get(url).then((response) => {
+        this.temperatureReal = Math.round(response.data.main.temp);
+        this.wind = Math.round(response.data.wind.speed);
+        this.humidity = Math.round(response.data.main.humidity);
+        this.temperatureFeel = response.data.main.feels_like;
+      })
   }
 };
 </script>
